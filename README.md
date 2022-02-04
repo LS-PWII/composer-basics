@@ -32,7 +32,7 @@ If you open it with your favourite editor, it should look something like this:
   "authors": [
     {
       "name": "Nicole Marie Jimenez",
-      "email": "nicolemarie.jimenez@students.salle.url"
+      "email": "nicolemarie.jimenez@students.salle.url.edu"
     }
   ],
   "require": {}
