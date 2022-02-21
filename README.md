@@ -40,7 +40,7 @@ If you open it with your favourite editor, it should look something like this:
 Now we are going to install the **Faker** library from [Packagist](https://packagist.org/). Open your terminal and type the following command:
 
 ```
-docker run --rm --interactive --tty -v $(pwd):/app composer require fzaninotto/faker
+composer require fzaninotto/faker
 ```
 
 At this point, if you open the _composer.json_ file, you will notice that a new key _require_ has been added containing the **Faker** dependency. Moreover, you should also notice that a new folder called **vendor** has been created in the root folder of the project. If you open it, it should look like this:
@@ -71,7 +71,7 @@ Now, we want to add another dependency to our project. We want to be able to add
 Using the same command to install the Faker package, let's install the **monolog** package.
 
 ```
-docker run --rm --interactive --tty -v $(pwd):/app composer require monolog/monolog
+composer require monolog/monolog
 ```
 
 Open the vendor folder again. As you can see, aside from the **monolog** package, the **psr** package was also installed. That's because **composer** has also installed all the dependencies of **monolog** for us.
@@ -92,7 +92,7 @@ We can tell composer the Namespaces that we want to use to _autoload_ our code f
 
 **Note:** Remember to add a comma before adding this new property.
 
-After indicating the Namespaces, need to run the command `docker run --rm --interactive --tty -v $(pwd):/app composer dump-autoload` to force composer to update the autoloader located at `./vendor/autoload.php`.
+After indicating the Namespaces, need to run the command `composer dump-autoload` to force composer to update the autoloader located at `./vendor/autoload.php`.
 
 With this, we are defining a mapping from namespaces to directories. The `src/` directory would be in your project root.
 
