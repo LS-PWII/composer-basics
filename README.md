@@ -18,9 +18,7 @@ You can start by cloning the repository using the following command:
 git clone <composer-basics>
 ```
 
-Now, we are going to initialize the project by running the `docker run --rm --interactive --tty -v $(pwd):/app composer init` command. This command is going to ask you a few questions about the project that you need to answer. After finishing all the questions, it should create a file called **composer.json** with all the provided information.
-
-- If you are using Windows PowerShell, use curly brackets for the `pwd` command: `docker run --rm --interactive --tty -v ${pwd}:/app composer init`.
+Now, we are going to initialize the project by running the `docker run --rm --interactive --tty -v ${PWD}:/app composer init` command. This command is going to ask you a few questions about the project that you need to answer. After finishing all the questions, it should create a file called **composer.json** with all the provided information.
 
 If you open it with your favourite editor, it should look something like this:
 
