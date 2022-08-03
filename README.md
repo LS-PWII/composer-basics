@@ -18,19 +18,27 @@ You can start by cloning the repository using the following command:
 git clone <composer-basics>
 ```
 
-Now, we are going to initialize the project by running the `docker run --rm --interactive --tty -v ${PWD}:/app composer init` command. This command is going to ask you a few questions about the project that you need to answer. After finishing all the questions, it should create a file called **composer.json** with all the provided information.
+Now, we are going to initialize the project by running this command:
+
+```
+docker run --rm --interactive --tty -v ${PWD}:/app vcaballerosalle/composer:2.0 init
+```
+
+As you can observe, we are using the [vcaballerosalle/composer:2.0](https://hub.docker.com/layers/composer/vcaballerosalle/composer/2.0/images/sha256-c1836548760408baa3f5b6bb6dc2a33dc4faa2ea3a6f952d0a8680ac9a22382f?context=explore) image which is exactly the same as the original composer image. This way, we will all be using the same version of Composer, which is compatible with our PHP application version.
+
+Composer will ask you a few questions about the project that you need to answer. After finishing all the questions, it should create a file called **composer.json** with all the provided information.
 
 If you open it with your favourite editor, it should look something like this:
 
 ```json
 {
-  "name": "nicolemariejimenez/composer-basics",
+  "name": "student/composer-basics",
   "description": "An introduction to composer",
   "type": "project",
   "authors": [
     {
-      "name": "Nicole Marie Jimenez",
-      "email": "nicolemarie.jimenez@students.salle.url.edu"
+      "name": "Student",
+      "email": "student@students.salle.url.edu"
     }
   ],
   "require": {}
@@ -40,7 +48,7 @@ If you open it with your favourite editor, it should look something like this:
 Now we are going to install the **Faker** library from [Packagist](https://packagist.org/). Open your terminal and type the following command:
 
 ```
-composer require fzaninotto/faker
+docker run --rm --interactive --tty -v ${PWD}:/app vcaballerosalle/composer:2.0 require fzaninotto/faker
 ```
 
 At this point, if you open the _composer.json_ file, you will notice that a new key _require_ has been added containing the **Faker** dependency. Moreover, you should also notice that a new folder called **vendor** has been created in the root folder of the project. If you open it, it should look like this:
@@ -71,7 +79,7 @@ Now, we want to add another dependency to our project. We want to be able to add
 Using the same command to install the Faker package, let's install the **monolog** package.
 
 ```
-composer require monolog/monolog
+docker run --rm --interactive --tty -v ${PWD}:/app vcaballerosalle/composer:2.0 require monolog/monolog
 ```
 
 Open the vendor folder again. As you can see, aside from the **monolog** package, the **psr** package was also installed. That's because **composer** has also installed all the dependencies of **monolog** for us.
@@ -92,7 +100,7 @@ We can tell composer the Namespaces that we want to use to _autoload_ our code f
 
 **Note:** Remember to add a comma before adding this new property.
 
-After indicating the Namespaces, need to run the command `composer dump-autoload` to force composer to update the autoloader located at `./vendor/autoload.php`.
+After indicating the Namespaces, need to run the command `docker run --rm --interactive --tty -v ${PWD}:/app vcaballerosalle/composer:2.0 dump-autoload` to force composer to update the autoloader located at `./vendor/autoload.php`.
 
 With this, we are defining a mapping from namespaces to directories. The `src/` directory would be in your project root.
 

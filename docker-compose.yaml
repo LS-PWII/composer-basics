@@ -16,7 +16,7 @@ services:
 
   app:
     container_name: pw_composer-php
-    image: vcaballerosalle/pwii-php-fpm
+    image: vcaballerosalle/pwii-php-fpm:2.0
     restart: unless-stopped
     ports:
       - "9030:9001"
