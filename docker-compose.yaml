@@ -4,7 +4,7 @@ services:
 
   nginx:
     container_name: pw_composer-server
-    image: nginx:1.19.6-alpine
+    image: nginx:alpine
     restart: unless-stopped
     ports:
       - "8030:80"
