@@ -78,7 +78,7 @@ Now, we want to add another dependency to our project. We want to be able to add
 
 Using the same command to install the Faker package, let's install the **monolog** package.
 
-```
+```bash
 docker run --rm --interactive --tty -v ${PWD}:/app vcaballerosalle/composer:2.0 require monolog/monolog
 ```
 
@@ -112,7 +112,7 @@ We will be creating an simple application that shows a list of random user names
 
 First, create the `index.php` where the main code will be. This file is inside the `public` folder.
 
-```
+```php
 <?php
 declare(strict_types=1);
 
@@ -123,7 +123,7 @@ You can observe that the first line is `declare(strict_types=1);`. By setting `s
 
 Now, create `src/Model` folder in the base directory of the project. Inside the `Model` folder, create a class called `User`.
 
-```
+```php
 <?php
 
 declare(strict_types=1);
@@ -160,7 +160,7 @@ You can see that we are saying that this class is in `SallePW\Model` namespace. 
 
 In the `index.php` file, add the following code:
 
-```
+```php
 $user = new User(1, "Nicole Marie Jimenez");
 
 echo $user->getName();
@@ -174,13 +174,13 @@ Fatal error: Uncaught Error: Class "User" not found in /app/public/index.php:8
 
 Why did this happen? The error says that the "User" class is not found. You are trying to use instantiate the User class, but it is not imported. To fix this, add this line just below the `require_once` line:
 
-```
+```php
 require '../src/Model/User.php'; // remember that the index.php is inside the public folder
 ```
 
 If you open http://localhost:8030/ again, what error is shown? Since the `User` class now is namespaced, you need to use the fully qualified name that includes the namespace like this:
 
-```
+```php
 <?php
 
 declare(strict_types=1);
@@ -195,19 +195,19 @@ echo $user->getName();
 
 This will work. However, to take advantage of PHP namespaces, you can import a class from a namespace instead of importing the namespace. Add the the following line just below `require '../src/Model/User.php';`:
 
-```
+```php
 use SallePW\Model\User;
 ```
 
 The `use` operator lets you import the `User` class from the `SallePW\Model` namespace. Therefore, we don’t have to prefix the class name with the namespace.
 
-```
+```php
 $user = new User(1, "Nicole Marie Jimenez"); // you can directly use the User class
 ```
 
 What if there are more classes inside the same namespace? Add another class called `Book` inside the `Model` folder.
 
-```
+```php
 <?php
 
 declare(strict_types=1);
@@ -243,7 +243,7 @@ final class Book {
 
 To be able to use both classes, you can import them individually:
 
-```
+```php
 require '../src/Model/User.php';
 require '../src/Model/Book.php';
 
@@ -259,7 +259,7 @@ echo $book->getName();
 
 But, there is a way to simplify this. Both of these classes are in the same namespace. You have previously defined in the `composer.json` the namespaces. Instead of having to use `require` for each file individually, you can take advantage of the namespaces. First, remove the following lines:
 
-```
+```php
 require '../src/Model/User.php';
 require '../src/Model/Book.php';
 ```
@@ -268,7 +268,7 @@ Check the browser again. What error do you see? Why do you think PHP raised that
 
 Now, just below the `declare(strict_types=1);` line, add the `autoload.php` file which is inside the `vendor/` folder. This will load the namespaces defined in `composer.json`.
 
-```
+```php
 <?php
 
 declare(strict_types=1);
@@ -287,7 +287,7 @@ Thanks to Composer's `vendor/autoload.php`, which is used for autoloading librar
 
 First, we want to generate fake data with the [**Faker**](https://github.com/FakerPHP/Faker/blob/main/README.md) package. According to the documentation, you can start using the package by creating the Faker:
 
-```
+```php
 use Faker\Factory; // using the Factory class included in the Faker package
 
 $faker = Factory::create();
@@ -295,7 +295,7 @@ $faker = Factory::create();
 
 Use this faker to create random user names.
 
-```
+```php
 <?php
 
 declare(strict_types=1);
